@@ -46,7 +46,7 @@ export function Login() {
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
-            Don't have an account? &nbsp; 
+            Don't have an account?  
             <Link className="underline" href="/signup">
                Sign up
             </Link>
