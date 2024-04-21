@@ -42,8 +42,6 @@ export default function Home() {
         />
       </div>
       <Link href="/signin">LOGIN PAGE</Link>
-
-     
     </main>
   );
 }
