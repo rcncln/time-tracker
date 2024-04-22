@@ -1,3 +1,4 @@
+"use client";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -10,8 +11,43 @@ import {
   TableBody,
   Table,
 } from "@/components/ui/table";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ReactElement, useState } from "react";
+
+function splitTime(input: string): number {
+  var parts = input.split(":");
+  var hours = parseInt(parts[0]);
+  var minutes = parseInt(parts[1]);
+  return hours * 60 + minutes;
+}
+
+type FormData = {
+  project: string;
+  date: string;
+  duration: string;
+};
 
 export function TimeLogging() {
+  const [formData, setFormData] = useState<FormData>({
+    project: "",
+    date: "",
+    duration: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = e.target;
+    console.log(name, value);
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
   return (
     <>
       <Card>
@@ -24,19 +60,39 @@ export function TimeLogging() {
             <Label className="text-sm" htmlFor="project">
               Project
             </Label>
-            <Input id="project" placeholder="Enter project name" />
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a project" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Fruits</SelectLabel>
+                  <SelectItem value="apple">Project one</SelectItem>
+                  <SelectItem value="banana">Project one</SelectItem>
+                  <SelectItem value="blueberry">Project one</SelectItem>
+                  <SelectItem value="grapes">Project one</SelectItem>
+                  <SelectItem value="pineapple">Project one</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
+
           <div className="grid gap-1.5">
             <Label className="text-sm" htmlFor="date">
               Date
             </Label>
-            <Input id="date" type="date" />
+            <Input id="date" type="date" onChange={handleChange} />
           </div>
           <div className="grid gap-1.5">
             <Label className="text-sm" htmlFor="duration">
               Duration (hh:mm)
             </Label>
-            <Input id="duration" placeholder="Enter duration" type="text" />
+            <Input
+              id="duration"
+              placeholder="Enter duration"
+              type="text"
+              onChange={handleChange}
+            />
           </div>
           <Button className="w-full">Submit</Button>
         </CardContent>

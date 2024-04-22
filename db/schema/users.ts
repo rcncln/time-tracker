@@ -25,7 +25,7 @@ export const loginSessions = pgTable("login_sessions", {
   logout_time: timestamp("logout_time"),
 });
 
-export const Projects = pgTable("projects", {
+export const projects = pgTable("projects", {
   project_id: serial("project_id").primaryKey(),
   project_name: text("project_name").notNull(),
   user_id: serial("user_id")
@@ -34,3 +34,12 @@ export const Projects = pgTable("projects", {
   date_time: date("date"),
   work_minutes: time('work_minutes'),
 });
+
+export const workingHours = pgTable("working_hours", {
+  working_hour_id: serial("working_hour_id").primaryKey(),
+  project_id: serial("project_id").notNull()
+  .references(() => projects.project_id),
+  user_id: serial("user_id").notNull().references(() => users.user_id),
+  date: date("date", { mode: "date" }),
+  note: text("notes")
+})
