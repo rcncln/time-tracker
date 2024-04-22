@@ -66,7 +66,7 @@ export function TimeLogging() {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
+                  <SelectLabel>Projects</SelectLabel>
                   <SelectItem value="apple">Project one</SelectItem>
                   <SelectItem value="banana">Project one</SelectItem>
                   <SelectItem value="blueberry">Project one</SelectItem>
@@ -149,7 +149,7 @@ export function TimeLogging() {
   );
 }
 
-function ClockIcon(props) {
+function ClockIcon(props:any) {
   return (
     <svg
       {...props}

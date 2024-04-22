@@ -71,7 +71,7 @@ export function Signup() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="bg-gray-100 dark:bg-gray-950 h-screen flex justify-center flex-col">
-        <div className="mx-auto max-w-md space-y-6  p-6 rounded-lg border bg-card text-card-foreground shadow-sm mx-auto max-w-sm">
+        <div className="mx-auto max-w-md space-y-6  p-6 rounded-lg border bg-card text-card-foreground shadow-sm ">
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold">Sign Up</h1>
             <p className="text-gray-500 dark:text-gray-400">
