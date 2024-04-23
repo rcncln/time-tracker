@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ReactElement, useState } from "react";
+import { QueryResultRow } from "pg";
 
 function splitTime(input: string): number {
   var parts = input.split(":");
@@ -35,7 +36,7 @@ type FormData = {
   duration: string;
 };
 
-export function TimeLogging() {
+export function TimeLogging({ rows }: { rows: QueryResultRow }) {
   const [formData, setFormData] = useState<FormData>({
     project: "",
     date: "",
@@ -67,11 +68,13 @@ export function TimeLogging() {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Projects</SelectLabel>
-                  <SelectItem value="apple">Project one</SelectItem>
-                  <SelectItem value="banana">Project one</SelectItem>
-                  <SelectItem value="blueberry">Project one</SelectItem>
-                  <SelectItem value="grapes">Project one</SelectItem>
-                  <SelectItem value="pineapple">Project one</SelectItem>
+                  {rows?.map((row) => (
+                    <SelectItem value={row.project_name} key={row.project_name}>
+                      {row.project_name}
+                    </SelectItem>
+                  ))}
+
+                
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -149,7 +152,7 @@ export function TimeLogging() {
   );
 }
 
-function ClockIcon(props:any) {
+function ClockIcon(props: any) {
   return (
     <svg
       {...props}

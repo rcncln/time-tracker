@@ -3,7 +3,11 @@ import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { TimeLogging } from "./time-logging";
 import { ModeToggle } from "../ui/mode-toggle";
 
-export function Sidebar() {
+export function Sidebar({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <div className="flex h-screen bg-gray-200 dark:bg-gray-900">
       <aside className="w-64 bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-700">
@@ -38,7 +42,7 @@ export function Sidebar() {
             </Link>
           </li>
           <li className="flex items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Link className="flex items-center space-x-4" href="#">
+            <Link className="flex items-center space-x-4" href="timelog">
               <ClockIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <span className="text-sm font-medium">Time Log</span>
             </Link>
@@ -54,40 +58,10 @@ export function Sidebar() {
         <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">
           Dashboard
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle>Total Users</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <span className="text-2xl font-bold">1,245</span>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle>Orders</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <span className="text-2xl font-bold">645</span>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle>Sales</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <span className="text-2xl font-bold">$24,680</span>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle>Performance</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <span className="text-2xl font-bold">87%</span>
-            </CardContent>
-          </Card>
-          <TimeLogging />
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-6">
+      
+        {children}
+        
         </div>
       </main>
     </div>

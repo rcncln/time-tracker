@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { QueryResultRow } from "pg";
 
 const invoices = [
   {
@@ -54,7 +55,7 @@ const invoices = [
   },
 ];
 
-export function TableDemo() {
+export function TableDemo({ rows }: { rows: QueryResultRow }) {
   return (
     <Table>
       <TableCaption>A list of your users</TableCaption>
@@ -66,11 +67,11 @@ export function TableDemo() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
+        {rows.map((row) => (
+          <TableRow key={row.email}>
+            <TableCell className="font-medium">{row.first_name}</TableCell>
+            <TableCell>{row.last_name}</TableCell>
+            <TableCell>{row.email}</TableCell>
           </TableRow>
         ))}
       </TableBody>

@@ -1,8 +1,11 @@
 import React from "react";
 import { TimeLogging } from "@/components/component/time-logging";
+import { sql } from "@vercel/postgres";
 
-export default function Timelog() {
+export default async function Timelog() {
+    const { rows } = await sql`SELECT * from projects`;
+
     return(
-        <TimeLogging />
+        <TimeLogging rows={rows} />
     )
 }
