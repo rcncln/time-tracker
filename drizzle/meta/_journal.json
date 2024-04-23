@@ -15,6 +15,13 @@
       "when": 1713814244194,
       "tag": "0001_mute_black_knight",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1713900101888,
+      "tag": "0002_romantic_patch",
+      "breakpoints": true
     }
   ]
 }

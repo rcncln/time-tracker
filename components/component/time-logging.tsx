@@ -36,7 +36,7 @@ type FormData = {
   duration: string;
 };
 
-export function TimeLogging({ rows }: { rows: QueryResultRow }) {
+export function TimeLogging({ rows }: { rows: QueryResultRow[] }) {
   const [formData, setFormData] = useState<FormData>({
     project: "",
     date: "",
@@ -49,57 +49,75 @@ export function TimeLogging({ rows }: { rows: QueryResultRow }) {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleSubmit = async () => {
+    console.log("submit form");
+
+    const response = await fetch("/api/projects", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formData }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <>
-      <Card>
-        <CardHeader className="flex items-center gap-2">
-          <ClockIcon className="w-6 h-6" />
-          <CardTitle>Time Logging</CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          <div className="grid gap-1.5">
-            <Label className="text-sm" htmlFor="project">
-              Project
-            </Label>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a project" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Projects</SelectLabel>
-                  {rows?.map((row) => (
-                    <SelectItem value={row.project_name} key={row.project_name}>
-                      {row.project_name}
-                    </SelectItem>
-                  ))}
+      <form onSubmit={handleSubmit}>
+        <Card>
+          <CardHeader className="flex items-center gap-2">
+            <ClockIcon className="w-6 h-6" />
+            <CardTitle>Time Logging</CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="grid gap-1.5">
+              <Label className="text-sm" htmlFor="project">
+                Project
+              </Label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a project" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Projects</SelectLabel>
+                    {rows?.map((row) => (
+                      <SelectItem
+                        value={row.project_name}
+                        key={row.project_name}
+                      >
+                        {row.project_name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
 
-                
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="grid gap-1.5">
-            <Label className="text-sm" htmlFor="date">
-              Date
-            </Label>
-            <Input id="date" type="date" onChange={handleChange} />
-          </div>
-          <div className="grid gap-1.5">
-            <Label className="text-sm" htmlFor="duration">
-              Duration (hh:mm)
-            </Label>
-            <Input
-              id="duration"
-              placeholder="Enter duration"
-              type="text"
-              onChange={handleChange}
-            />
-          </div>
-          <Button className="w-full">Submit</Button>
-        </CardContent>
-      </Card>
+            <div className="grid gap-1.5">
+              <Label className="text-sm" htmlFor="date">
+                Date
+              </Label>
+              <Input id="date" type="date" onChange={handleChange} />
+            </div>
+            <div className="grid gap-1.5">
+              <Label className="text-sm" htmlFor="duration">
+                Duration (hh:mm)
+              </Label>
+              <Input
+                id="duration"
+                placeholder="Enter duration"
+                type="text"
+                onChange={handleChange}
+              />
+            </div>
+            <Button className="w-full">Submit</Button>
+          </CardContent>
+        </Card>
+      </form>
       <Card className="w-full">
         <CardContent className="p-0">
           <Table>

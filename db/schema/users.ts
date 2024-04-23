@@ -31,8 +31,7 @@ export const projects = pgTable("projects", {
   user_id: serial("user_id")
     .notNull()
     .references(() => users.user_id),
-  date_time: date("date"),
-  work_minutes: time('work_minutes'),
+
 });
 
 export const workingHours = pgTable("working_hours", {
@@ -40,6 +39,6 @@ export const workingHours = pgTable("working_hours", {
   project_id: serial("project_id").notNull()
   .references(() => projects.project_id),
   user_id: serial("user_id").notNull().references(() => users.user_id),
-  date: date("date", { mode: "date" }),
-  note: text("notes")
+  date_time: date("date", { mode: "date" }),
+  work_minutes: time('work_minutes'),
 })

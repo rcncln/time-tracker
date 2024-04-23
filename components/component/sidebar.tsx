@@ -31,8 +31,8 @@ export function Sidebar({
           </li>
           <li className="flex items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700">
             <Link className="flex items-center space-x-4" href="#">
-              <ShoppingCartIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-              <span className="text-sm font-medium">Orders</span>
+              <ProjectIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+              <span className="text-sm font-medium">Create Project</span>
             </Link>
           </li>
           <li className="flex items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -59,16 +59,14 @@ export function Sidebar({
           Dashboard
         </h1>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-6">
-      
-        {children}
-        
+          {children}
         </div>
       </main>
     </div>
   );
 }
 
-function HomeIcon(props) {
+function HomeIcon(props:any) {
   return (
     <svg
       {...props}
@@ -88,7 +86,7 @@ function HomeIcon(props) {
   );
 }
 
-function SettingsIcon(props) {
+function SettingsIcon(props:any) {
   return (
     <svg
       {...props}
@@ -108,7 +106,7 @@ function SettingsIcon(props) {
   );
 }
 
-function ShoppingCartIcon(props) {
+function ShoppingCartIcon(props:any) {
   return (
     <svg
       {...props}
@@ -129,7 +127,7 @@ function ShoppingCartIcon(props) {
   );
 }
 
-function UsersIcon(props) {
+function UsersIcon(props:any) {
   return (
     <svg
       {...props}
@@ -151,7 +149,7 @@ function UsersIcon(props) {
   );
 }
 
-function ClockIcon(props) {
+function ClockIcon(props:any) {
   return (
     <svg
       {...props}
@@ -167,6 +165,27 @@ function ClockIcon(props) {
     >
       <circle cx="12" cy="12" r="10" />
       <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
+function ProjectIcon(props:any) {
+  return (
+    <svg
+      {...props}
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10 12v1h4v-1m4 7H6a1 1 0 0 1-1-1V9h14v9a1 1 0 0 1-1 1ZM4 5h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"
+      />
     </svg>
   );
 }
