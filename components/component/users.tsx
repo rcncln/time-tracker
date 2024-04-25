@@ -55,7 +55,7 @@ const invoices = [
   },
 ];
 
-export function TableDemo({ rows }: { rows: QueryResultRow }) {
+export function TableDemo({ users }: { users: QueryResultRow[] }) {
   return (
     <Table>
       <TableCaption>A list of your users</TableCaption>
@@ -67,11 +67,11 @@ export function TableDemo({ rows }: { rows: QueryResultRow }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {rows.map((row) => (
-          <TableRow key={row.email}>
-            <TableCell className="font-medium">{row.first_name}</TableCell>
-            <TableCell>{row.last_name}</TableCell>
-            <TableCell>{row.email}</TableCell>
+        {users.map((user) => (
+          <TableRow key={user.email}>
+            <TableCell className="font-medium">{user.first_name}</TableCell>
+            <TableCell>{user.last_name}</TableCell>
+            <TableCell>{user.email}</TableCell>
           </TableRow>
         ))}
       </TableBody>

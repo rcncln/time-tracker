@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
-import { TimeLogging } from "./time-logging";
 import { ModeToggle } from "../ui/mode-toggle";
 
 export function Sidebar({
@@ -30,7 +28,7 @@ export function Sidebar({
             </Link>
           </li>
           <li className="flex items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Link className="flex items-center space-x-4" href="#">
+            <Link className="flex items-center space-x-4" href="/create-project">
               <ProjectIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <span className="text-sm font-medium">Create Project</span>
             </Link>

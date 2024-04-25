@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
-export async function getProjects() {
+export async function GET(req: Request) {
   try {
     const result = await sql`SELECT * from PROJECTS;`;
     console.log(result);

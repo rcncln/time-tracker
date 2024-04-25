@@ -36,7 +36,13 @@ type FormData = {
   duration: string;
 };
 
-export function TimeLogging({ rows }: { rows: QueryResultRow[] }) {
+export function TimeLogging({
+  rows,
+  errorMessage,
+}: {
+  rows: QueryResultRow[] | [],
+  errorMessage: string |null;
+}) {
   const [formData, setFormData] = useState<FormData>({
     project: "",
     date: "",
@@ -49,7 +55,8 @@ export function TimeLogging({ rows }: { rows: QueryResultRow[] }) {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     console.log("submit form");
 
     const response = await fetch("/api/projects", {
