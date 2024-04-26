@@ -4,19 +4,14 @@ import { sql } from "@vercel/postgres";
 import { TableDemo } from "@/components/component/users";
 import { QueryResultRow } from "pg";
 import Loading from "./loading";
+import { getUsers } from "@/lib/getUsers";
 
 export default async function Users() {
-  let users: QueryResultRow[] = [];
-  let errorMessage = null;
+  let users;
 
   try {
-    const result = await sql`SELECT first_name, last_name, email from users`;
-    users = result.rows;
-    console.log(users);
-  } catch (error: any) {
-    errorMessage = "Error fetching data from database: " + error.message;
-    console.error(errorMessage);
-  }
+    users = await getUsers();
+  } catch (error) {}
 
   return (
     <div>

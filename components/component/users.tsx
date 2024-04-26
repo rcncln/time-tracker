@@ -69,8 +69,8 @@ export function TableDemo({ users }: { users: QueryResultRow[] }) {
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.email}>
-            <TableCell className="font-medium">{user.first_name}</TableCell>
-            <TableCell>{user.last_name}</TableCell>
+            <TableCell className="font-medium">{user.firstName}</TableCell>
+            <TableCell>{user.lastName}</TableCell>
             <TableCell>{user.email}</TableCell>
           </TableRow>
         ))}

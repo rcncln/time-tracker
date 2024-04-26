@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ModeToggle } from "../ui/mode-toggle";
 
+import { Header } from "@/components/component/header";
+
 export function Sidebar({
   children,
 }: Readonly<{
@@ -28,7 +30,10 @@ export function Sidebar({
             </Link>
           </li>
           <li className="flex items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Link className="flex items-center space-x-4" href="/create-project">
+            <Link
+              className="flex items-center space-x-4"
+              href="/create-project"
+            >
               <ProjectIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <span className="text-sm font-medium">Create Project</span>
             </Link>
@@ -53,9 +58,7 @@ export function Sidebar({
         </ul>
       </aside>
       <main className="flex-1 p-6">
-        <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">
-          Dashboard
-        </h1>
+        <Header />
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-6">
           {children}
         </div>
@@ -64,7 +67,7 @@ export function Sidebar({
   );
 }
 
-function HomeIcon(props:any) {
+function HomeIcon(props: any) {
   return (
     <svg
       {...props}
@@ -84,7 +87,7 @@ function HomeIcon(props:any) {
   );
 }
 
-function SettingsIcon(props:any) {
+function SettingsIcon(props: any) {
   return (
     <svg
       {...props}
@@ -104,7 +107,7 @@ function SettingsIcon(props:any) {
   );
 }
 
-function ShoppingCartIcon(props:any) {
+function ShoppingCartIcon(props: any) {
   return (
     <svg
       {...props}
@@ -125,7 +128,7 @@ function ShoppingCartIcon(props:any) {
   );
 }
 
-function UsersIcon(props:any) {
+function UsersIcon(props: any) {
   return (
     <svg
       {...props}
@@ -147,7 +150,7 @@ function UsersIcon(props:any) {
   );
 }
 
-function ClockIcon(props:any) {
+function ClockIcon(props: any) {
   return (
     <svg
       {...props}
@@ -167,7 +170,7 @@ function ClockIcon(props:any) {
   );
 }
 
-function ProjectIcon(props:any) {
+function ProjectIcon(props: any) {
   return (
     <svg
       {...props}
