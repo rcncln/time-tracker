@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/select";
 import { ReactElement, useState } from "react";
 import { QueryResultRow } from "pg";
+import { postProject } from "@/lib/postProject";
 
 function splitTime(input: string): number {
   var parts = input.split(":");
@@ -32,37 +33,28 @@ function splitTime(input: string): number {
 
 type FormData = {
   projectName: string;
-  user_id: number
+  userId: number;
 };
 
 export function ProjectCreation({ rows }: { rows?: QueryResultRow[] }) {
   const [formData, setFormData] = useState<FormData>({
     projectName: "",
-    user_id: 5
-
+    userId: 2,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     let { name, value } = e.target;
     console.log(name, value);
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async (e:any) => {
-    e.preventDefault()
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     console.log("submit form");
 
-    const response = await fetch("/api/projects", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ formData }),
-    });
-
-    const data = await response.json();
-    console.log(data);
+    const result = await postProject({ ...formData });
+    console.log(result);
   };
 
   return (
@@ -87,7 +79,6 @@ export function ProjectCreation({ rows }: { rows?: QueryResultRow[] }) {
                 />
               </div>
             </div>
-
             <Button className="w-full">Submit</Button>
           </CardContent>
         </Card>

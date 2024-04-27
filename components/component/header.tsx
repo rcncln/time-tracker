@@ -1,3 +1,4 @@
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Popover,
@@ -22,7 +23,7 @@ export function Header() {
             </Avatar>
           </PopoverTrigger>
           <PopoverContent>
-            <div>sign out</div>{" "}
+            <div className="hover:bg-muted/50 cursor-pointer">sign out</div>
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>

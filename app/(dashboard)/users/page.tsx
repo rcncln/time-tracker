@@ -14,10 +14,8 @@ export default async function Users() {
   } catch (error) {}
 
   return (
-    <div>
       <Suspense fallback={<Loading />}>
         <TableDemo users={users} />
       </Suspense>
-    </div>
   );
 }
