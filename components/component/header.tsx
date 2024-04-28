@@ -1,5 +1,6 @@
 import { UserButton } from "@clerk/nextjs";
 import { Suspense } from "react";
+import LazyUserButtonWrapper from "./lazy-user-button";
 
 export function Header() {
   return (
@@ -8,9 +9,7 @@ export function Header() {
         Dashboard
       </h1>
       <div>
-        <Suspense fallback={<p className="text-gray-800">Loading feed...</p>}>
-          <UserButton />
-        </Suspense>
+      <LazyUserButtonWrapper />
       </div>
     </div>
   );

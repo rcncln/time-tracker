@@ -31,14 +31,23 @@ export const projects = pgTable("projects", {
   user_id: serial("user_id")
     .notNull()
     .references(() => users.user_id),
-
 });
 
 export const workingHours = pgTable("working_hours", {
   working_hour_id: serial("working_hour_id").primaryKey(),
-  project_id: serial("project_id").notNull()
-  .references(() => projects.project_id),
-  user_id: serial("user_id").notNull().references(() => users.user_id),
+  project_id: serial("project_id")
+    .notNull()
+    .references(() => projects.project_id),
+  user_id: serial("user_id")
+    .notNull()
+    .references(() => users.user_id),
   date_time: date("date", { mode: "date" }),
-  work_minutes: time('work_minutes'),
-})
+  work_minutes: time("work_minutes"),
+});
+
+export const clerk_users = pgTable("clerk_users", {
+  clerk_user_id: varchar("clerk_user_id", { length: 256 }),
+  user_id: serial("user_id")
+    .notNull()
+    .references(() => users.user_id),
+});
