@@ -1,5 +1,4 @@
-import { Sidebar } from "@/components/component/sidebar";
-import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import LayoutWithAuthentication from "@/components/component/layout-with-authetication";
 
 export default function RootLayout({
   children,
@@ -8,12 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <header>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <Sidebar>{children}</Sidebar>
-      </SignedIn>
+      <LayoutWithAuthentication>{children}</LayoutWithAuthentication>
     </header>
   );
 }
