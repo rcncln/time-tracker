@@ -3,43 +3,18 @@ import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableCell,
-  TableBody,
-  Table,
-} from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { ReactElement, useState } from "react";
+
+import { useState } from "react";
 import { QueryResultRow } from "pg";
 import { postProject } from "@/lib/postProject";
 
-function splitTime(input: string): number {
-  var parts = input.split(":");
-  var hours = parseInt(parts[0]);
-  var minutes = parseInt(parts[1]);
-  return hours * 60 + minutes;
-}
-
 type FormData = {
   projectName: string;
-  userId: number;
 };
 
 export function ProjectCreation({ rows }: { rows?: QueryResultRow[] }) {
   const [formData, setFormData] = useState<FormData>({
     projectName: "",
-    userId: 2,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,26 +59,6 @@ export function ProjectCreation({ rows }: { rows?: QueryResultRow[] }) {
         </Card>
       </form>
     </>
-  );
-}
-
-function ClockIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
   );
 }
 

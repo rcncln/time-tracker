@@ -3,7 +3,6 @@ import { db } from "@/db/db";
 
 export async function postProject({
   projectName,
-  userId,
 }: {
   projectName: string;
   userId: number;
@@ -11,10 +10,12 @@ export async function postProject({
   let result;
 
   try {
-    result = await db.insert(schema.projects).values({
-      project_name: projectName,
-      user_id: userId,
-    }).returning();
+    result = await db
+      .insert(schema.projects)
+      .values({
+        project_name: projectName,
+      })
+      .returning();
   } catch (error) {
     console.log(error);
   }
