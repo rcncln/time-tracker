@@ -3,34 +3,11 @@ import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
+import { useHook } from "../hooks/create-project-hooks";
 import { useState } from "react";
-import { QueryResultRow } from "pg";
-import { postProject } from "@/lib/postProject";
 
-type FormData = {
-  projectName: string;
-};
-
-export function ProjectCreation({ rows }: { rows?: QueryResultRow[] }) {
-  const [formData, setFormData] = useState<FormData>({
-    projectName: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    let { name, value } = e.target;
-    console.log(name, value);
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    console.log("submit form");
-
-    const result = await postProject({ ...formData });
-    console.log(result);
-  };
+export function ProjectCreation({ userId }: { userId: number }) {
+  const { handleChange, handleSubmit, loading } = useHook(userId);
 
   return (
     <>
@@ -54,7 +31,9 @@ export function ProjectCreation({ rows }: { rows?: QueryResultRow[] }) {
                 />
               </div>
             </div>
-            <Button className="w-full">Submit</Button>
+            <Button className="w-full">
+              {loading ? "Loading..." : "Submit"}
+            </Button>
           </CardContent>
         </Card>
       </form>

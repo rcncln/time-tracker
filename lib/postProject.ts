@@ -1,11 +1,13 @@
+"use server";
 import * as schema from "@/db/schema/users";
 import { db } from "@/db/db";
 
 export async function postProject({
   projectName,
+  userId,
 }: {
-  projectName: string;
-  userId: number;
+  projectName: any;
+  userId: any;
 }) {
   let result;
 
@@ -14,6 +16,7 @@ export async function postProject({
       .insert(schema.projects)
       .values({
         project_name: projectName,
+        user_id: userId,
       })
       .returning();
   } catch (error) {

@@ -1,4 +1,5 @@
 import LayoutWithAuthentication from "@/components/component/layout-with-authetication";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function RootLayout({
   children,
@@ -7,7 +8,10 @@ export default function RootLayout({
 }>) {
   return (
     <header>
-      <LayoutWithAuthentication>{children}</LayoutWithAuthentication>
+      <main>
+        <LayoutWithAuthentication>{children}</LayoutWithAuthentication>
+      </main>
+      <Toaster />
     </header>
   );
 }
