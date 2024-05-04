@@ -4,10 +4,16 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useHook } from "../hooks/create-project-hooks";
-import { useState } from "react";
 
 export function ProjectCreation({ userId }: { userId: number }) {
-  const { handleChange, handleSubmit, loading } = useHook(userId);
+  const {
+    handleChange,
+    handleSubmit,
+    loading,
+    handleInputBlur,
+    handleInputFocus,
+    projectName,
+  } = useHook(userId);
 
   return (
     <>
@@ -28,10 +34,14 @@ export function ProjectCreation({ userId }: { userId: number }) {
                   placeholder="Enter project name"
                   type="text"
                   onChange={handleChange}
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlur}
+                  value={projectName}
                 />
+                
               </div>
             </div>
-            <Button className="w-full">
+            <Button className="w-full" disabled={projectName.trim() === ""}>
               {loading ? "Loading..." : "Submit"}
             </Button>
           </CardContent>

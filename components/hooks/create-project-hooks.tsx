@@ -7,6 +7,15 @@ export const useHook = (userId: any) => {
   const [projectName, setProjectName] = useState("");
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleInputFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsFocused(false);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProjectName(() => e.target.value);
@@ -19,6 +28,7 @@ export const useHook = (userId: any) => {
     const result = await postProject({ projectName, userId });
 
     setLoading(false);
+    setProjectName("");
 
     if (result) {
       toast({
@@ -40,5 +50,9 @@ export const useHook = (userId: any) => {
     handleChange,
     handleSubmit,
     loading,
+    handleInputBlur,
+    handleInputFocus,
+    isFocused,
+    projectName,
   };
 };
